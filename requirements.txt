@@ -1,0 +1,7 @@
+torch>=1.12.0
+torchvision>=0.13.0
+pygame>=2.0.0
+numpy>=1.21.0
+matplotlib>=3.5.0
+pyyaml>=6.0.0
+IPython>=7.0.0

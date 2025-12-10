@@ -1,0 +1,122 @@
+# Snake RL Assessment Configuration
+
+# Experiment Settings
+experiments:
+  default_episodes: 100
+  quick_episodes: 50
+  full_episodes: 500
+  
+  # Progress reporting interval
+  progress_interval: 20
+  
+  # Auto-save settings
+  auto_save_models: true
+  auto_save_results: true
+
+# Agent Configuration
+agent:
+  # Learning parameters
+  learning_rate: 0.001
+  gamma: 0.9  # discount factor
+  batch_size: 1000
+  
+  # Exploration parameters
+  epsilon_start: 80
+  epsilon_decay_rate: 1  # per episode
+  exploration_randomness: 200
+
+# Neural Network Architectures
+networks:
+  baseline:
+    type: "sequential"
+    layers: [256]
+    input_size: 11
+    output_size: 3
+    activation: "relu"
+    
+  increased:
+    type: "sequential"
+    layers: [512, 256, 128, 64]
+    input_size: 11
+    output_size: 3
+    activation: "relu"
+    
+  deeper:
+    type: "sequential"
+    layers: [256, 256, 128, 128, 64, 32, 16]
+    input_size: 11
+    output_size: 3
+    activation: "relu"
+    dropout: 0.1
+    
+  wide:
+    type: "sequential"
+    layers: [512, 512]
+    input_size: 11
+    output_size: 3
+    activation: "relu"
+
+# Memory Buffer Configurations
+memory:
+  tiny: 1000
+  small: 10000
+  baseline: 100000
+  large: 500000
+
+# Environment Settings
+environment:
+  # Game dimensions
+  width: 640
+  height: 480
+  block_size: 20
+  
+  # Game speed
+  speed: 40
+  
+  # Wall configurations
+  walls:
+    enabled: false
+    # Wall positions (x, y, width, height)
+    horizontal_walls:
+      - [200, 200, 200, 20]  # (x, y, width, height)
+      - [300, 300, 200, 20]
+    vertical_walls:
+      - [150, 100, 20, 100]
+      - [450, 250, 20, 100]
+
+# Performance Settings
+performance:
+  # PyTorch settings
+  device: "auto"  # auto, cpu, cuda
+  num_workers: 4
+  pin_memory: true
+  
+  # Memory optimization
+  memory_efficient: true
+  gradient_accumulation: 1
+
+# Logging Configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # File logging
+  file_logging: true
+  log_file: "logs/snake_rl.log"
+  
+  # Experiment logging
+  experiment_logging: true
+  tensorboard: false
+
+# Output Settings
+output:
+  # Directories
+  results_dir: "results"
+  plots_dir: "plots"
+  models_dir: "models"
+  logs_dir: "logs"
+  
+  # File formats
+  results_format: "json"
+  plots_format: "png"
+  plot_dpi: 300
